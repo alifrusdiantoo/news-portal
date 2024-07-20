@@ -13,14 +13,14 @@
                     <a href="/authors/{{ $article->author->id }}" class="hover:underline">{{ $article->author->name }}</a> &centerdot; {{ $article['created_at']->format('d F Y') }}
                 </div>
 
-                <a href="#" class="font-medium text-blue-500 hover:underline">{{ $article['tag'] }}</a>
+                <a href="/categories/{{ $article->category->slug }}" class="font-medium text-blue-500 hover:underline">{{ $article->category->name }}</a>
 
             </aside>
         </header>
 
         <main class="basis-1/2">
             <p class="mb-4 font-light">
-                {{ $article['text']}}
+                {{ $article['content']}}
             </p>
         </main>
     </article>

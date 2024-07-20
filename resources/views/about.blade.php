@@ -1,5 +1,4 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
     <p>
         Welcome to <strong>New News</strong>, your go-to source for reliable, up-to-the-minute news coverage from around
         the globe. Founded with the mission to provide unbiased, comprehensive news reporting, we strive to deliver
