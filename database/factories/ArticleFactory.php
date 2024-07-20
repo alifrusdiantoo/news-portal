@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
             'img' => 'https://dummyimage.com/600x400/eee/2020.png&text=x',
             'title' => fake()->sentence(),
             'author_id' => User::factory(),
-            'text' => fake()->text(1000),
+            'content' => fake()->text(1000),
             'category_id' => Category::factory()
         ];
     }

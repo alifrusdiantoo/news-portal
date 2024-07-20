@@ -20,7 +20,7 @@ return new class extends Migration
                 table: 'users',
                 indexName: 'articles_author_id'
             );
-            $table->text('text');
+            $table->text('content');
             $table->foreignId('category_id')->constrained(
                 table: 'categories',
                 indexName: 'articles_category_id'
