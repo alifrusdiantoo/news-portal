@@ -6,8 +6,12 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login', fn () => view('login'));
+
+Route::get('/dashboard', fn () => view('overview'));
+
 // News routing
-Route::get('/{news?}', function () {
+Route::get('/', function () {
     $highlight = Article::latest()->first();
 
     return view('news', ['title' => 'News', 'highlight' => $highlight, 'articles' => Article::filter(request(['search']))->latest()->paginate(12)->withQueryString()]);

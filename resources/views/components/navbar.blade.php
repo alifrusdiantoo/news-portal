@@ -8,9 +8,9 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <x-nav-link href="/" :active="request()->is('/') || request()->is('news')">Home</x-nav-link>
+                        <x-nav-link href="/">Home</x-nav-link>
                         @foreach ($categories as $category)
-                        <x-nav-link href="/categories/{{ $category->slug }}" :active="request()->is('{ $category->slug }')">{{ $category->name }}</x-nav-link>
+                        <x-nav-link href="/categories/{{ $category->slug }}">{{ $category->name }}</x-nav-link>
                         @endforeach
                     </div>
                 </div>
@@ -38,10 +38,9 @@
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                            <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Dashboard</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
                 </div>
