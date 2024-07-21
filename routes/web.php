@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{news?}', function () {
     $highlight = Article::latest()->first();
 
-    return view('news', ['title' => 'News', 'highlight' => $highlight, 'articles' => Article::filter(request(['search']))->latest()->get()]);
+    return view('news', ['title' => 'News', 'highlight' => $highlight, 'articles' => Article::filter(request(['search']))->latest()->paginate(12)->withQueryString()]);
 });
 
 Route::get('/news/{article:slug}', function (Article $article) {
@@ -22,7 +22,7 @@ Route::get('/authors/{user:username}', function (User $user) {
     $title = "$sum " . Str::plural('article', $sum) . " posted by {$user->name}";
     $search = implode(request(['search', '']));
 
-    $articles = Article::filter(['search' => $search, 'author' =>  $user->username])->latest()->get();
+    $articles = Article::filter(['search' => $search, 'author' =>  $user->username])->latest()->paginate(12)->withQueryString();
 
     return view('page', ['title' => $title, 'articles' => $articles]);
 });
@@ -33,7 +33,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 
     $search = implode(request(['search', '']));
 
-    $articles = Article::filter(['search' => $search, 'category' =>  $category->slug])->latest()->get();
+    $articles = Article::filter(['search' => $search, 'category' =>  $category->slug])->latest()->paginate(12)->withQueryString();
 
     return view('page', ['title' => $title, 'articles' => $articles]);
 });

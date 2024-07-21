@@ -1,7 +1,7 @@
 <x-layout>
     <x-search-bar></x-search-bar>
     <h2 class="text-xl font-bold text-blue-500">{{ $title }}</h2>
-    <section class="grid grid-cols-4 gap-5">
+    <section class="my-4 mb-4 grid grid-cols-4 gap-5">
         @forelse ($articles as $article)
         <article class="py-2 min-h-20 shadow-md">
             <a href="/news/{{ $article['slug'] }}">
@@ -30,4 +30,7 @@
         <p class="font-semibold text-xl my-4">Article not found</p>
         @endforelse
     </section>
+
+    {{ $articles->links() }}
+
 </x-layout>
