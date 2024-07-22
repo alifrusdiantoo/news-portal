@@ -1,3 +1,15 @@
 <x-header></x-header>
-{{ $slot }}
+    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+        <!-- Navbar -->
+        <x-navbar-dashboard></x-navbar-dashboard>
+        
+        <!-- Sidebar -->
+        <x-sidebar></x-sidebar>
+        
+
+        <!-- Main Content -->
+        <main class="p-4 md:ml-64 h-auto pt-20">
+            {{ $slot }}
+        </main>
+    </div>
 <x-footer></x-footer>
