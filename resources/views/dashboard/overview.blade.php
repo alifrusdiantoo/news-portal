@@ -39,7 +39,7 @@
             </svg>
             <span class="sr-only">Toggle sidebar</span>
           </button>
-          <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+          <a href="/" class="flex items-center justify-between mr-4">
             <img
               src="img/logo.png"
               class="mr-3 h-8"
@@ -71,11 +71,11 @@
             <div class="py-3 px-4">
               <span
                 class="block text-sm font-semibold text-gray-900 dark:text-white"
-                >Neil Sims</span
+                >{{ auth()->user()->name }}</span
               >
               <span
                 class="block text-sm text-gray-900 truncate dark:text-white"
-                >name@flowbite.com</span
+                >{{ auth()->user()->email }}</span
               >
             </div>
             <ul
@@ -97,11 +97,10 @@
                 >
               </li>
               <li>
-                <a
-                  href="#"
-                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Sign out</a
-                >
+				<form action="/logout" method="post" class="block hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
+					@csrf
+					<button type="submit" class="w-fill py-2 px-4 text-sm">Sign Out</button>
+				</form>
               </li>
             </ul>
           </div>
