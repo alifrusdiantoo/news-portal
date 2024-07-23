@@ -19,7 +19,7 @@ Route::get('/dashboard', function () {
     return view('dashboard.overview');
 })->middleware('auth');
 
-Route::get('/dashboard/add', function () {
+Route::get('/dashboard/form', function () {
     return view('dashboard.form');
 })->middleware('auth');
 
