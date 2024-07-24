@@ -68,7 +68,10 @@ class DashboardArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('dashboard.articles.edit', [
+            'article' => $article,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -76,7 +79,24 @@ class DashboardArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request['slug'] = Str::slug($request['title']);
+
+        $rules = [
+            'title' => 'required|min:50|max:255',
+            'category_id' => 'required',
+            'content' => 'required'
+        ];
+
+        if ($request->slug != $article->slug) {
+            $rules['slug'] = 'required|unique:articles';
+        }
+
+        $validatedData = $request->validate($rules);
+        $validatedData['author_id'] = auth()->user()->id;
+        $validatedData['img'] = 'https://dummyimage.com/600x400/eee/2020.png&text=x';
+        Article::where('id', $article->id)->update($validatedData);
+
+        return redirect('/dashboard/articles')->with('success', 'Article has been updated');
     }
 
     /**
@@ -84,6 +104,7 @@ class DashboardArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::destroy($article->id);
+        return redirect('/dashboard/articles')->with('success', 'Article has been deleted');
     }
 }

@@ -19,7 +19,7 @@
                     </div>
 
                     <p class="mb-4 font-light">
-                        {{ Str::limit($article['content'], 120) }}
+                        {{ Str::limit(strip_tags($article['content']), 120) }}
                     </p>
 
                     <a href="/categories/{{ $article->category->slug }}" class="font-medium text-blue-500 hover:underline">{{ $article->category->name }}</a>

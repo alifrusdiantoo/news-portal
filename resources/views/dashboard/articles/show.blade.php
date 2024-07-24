@@ -1,7 +1,7 @@
 <x-dashboard>
-    <a href="/dashboard/articles" class="text-blue-700">&larr; Back</a>
     <article class="py-5 col-span-8 mx-36">
-        <header class="flex flex-col gap-5">
+        <a href="/dashboard/articles" class="text-blue-700">&larr; Back to table</a>
+        <header class="flex flex-col gap-5 my-3">
             <figure class="mb-4">
                 <img class="object-cover object-top max-h-60 min-w-full rounded-md" src="{{ $article['img'] }}" alt="">
             </figure>
@@ -21,7 +21,7 @@
         </header>
 
         <main class="mb-4 font-light">
-            <div class="prose">
+            <div class="prose max-w-fit">
                 {!! $article['content'] !!}
             </div>
         </main>
