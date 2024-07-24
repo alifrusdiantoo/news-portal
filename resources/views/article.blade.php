@@ -10,7 +10,8 @@
                 </h3>
 
                 <div class="mb-2 text-sm text-gray-500">
-                    <a href="/authors/{{ $article->author->id }}" class="hover:underline">{{ $article->author->name }}</a> &centerdot; {{ $article['created_at']->format('d F Y') }}
+                    <!-- /authors/{{ $article->author->id }} -->
+                    <a href="/authors" class="hover:underline">{{ $article->author->name }}</a> &centerdot; {{ $article['created_at']->format('d F Y') }}
                 </div>
 
                 <a href="/categories/{{ $article->category->slug }}" class="font-medium text-blue-500 hover:underline">{{ $article->category->name }}</a>

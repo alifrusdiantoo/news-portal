@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\User;
@@ -8,26 +9,45 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
+// Route login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
+// Route register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function () {
+// Start route dashboard
+Route::get('/dashboard/', function () {
     return view('dashboard.overview');
 })->middleware('auth');
+
+// Route untuk melakukan CRUD
+Route::resource('/dashboard/articles', DashboardArticleController::class)->middleware('auth');
+
+Route::get('/dashboard/categories', function () {
+    return view('dashboard.categories');
+})->middleware('auth');
+
+Route::get('/dashboard/users', function () {
+    return view('dashboard.users');
+})->middleware('auth');
+
+Route::get('/authors', function () {
+    return view('profile', ['title' => 'Author']);
+});
 
 Route::get('/dashboard/form', function () {
     return view('dashboard.form');
 })->middleware('auth');
+// End route dashboard
 
-// News routing
+// Route news
 Route::get('/', function () {
     $highlight = Article::latest()->first();
 
-    return view('news', ['title' => 'News', 'highlight' => $highlight, 'articles' => Article::filter(request(['search']))->latest()->paginate(12)->withQueryString()]);
+    return view('news', ['title' => 'News', 'highlight' => $highlight, 'articles' => Article::filter(request(['search']))->latest()->paginate(8)->withQueryString()]);
 });
 
 Route::get('/news/{article:slug}', function (Article $article) {
@@ -55,10 +75,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     return view('page', ['title' => $title, 'articles' => $articles]);
 });
 
-Route::get('/about', function () {
-    return view('about', ['title' => 'About']);
-});
-
-Route::get('/contact', function () {
-    return view('contact', ['title' => 'Contact']);
-});
+Route::get('/profile', function () {
+    return view('profile', ['title' => 'Profile']);
+})->middleware('auth');
+// End route news

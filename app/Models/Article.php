@@ -11,7 +11,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['slug', 'img', 'title', 'author', 'content', 'tag'];
+    protected $fillable = ['slug', 'img', 'title', 'author_id', 'content', 'category_id'];
     protected $with = ['author', 'category'];
 
     public function author(): BelongsTo
@@ -26,8 +26,6 @@ class Article extends Model
 
     public function scopeFilter(Builder $query, array $filters): void
     {
-
-        // dd($filters);
         $query->when(
             $filters['search'] ?? false,
             fn ($query, $search) =>

@@ -13,7 +13,7 @@
                 <a href="/authors/{{ $highlight->author->username }}" class="hover:underline">{{ $highlight->author->name }}</a> | {{ $highlight['created_at']->format('d F Y') }}
             </div>
             <p class="my-6 font-light leading-7">
-                {{ Str::limit($highlight['content'], 360) }}
+                {{ Str::limit(strip_tags($highlight['content']), 360) }}
             </p>
             <a href="/news/{{ $highlight['slug'] }}" class="font-medium text-blue-500 hover:underline ">Read More</a>
         </aside>
@@ -40,7 +40,7 @@
                     </div>
 
                     <p class="mb-4 font-light line-clamp-3">
-                        {{ Str::limit($article['content'], 120) }}
+                        {{ Str::limit(strip_tags($article['content']), 120) }}
                     </p>
 
                     <a href="/categories/{{ $article->category->slug }}" class="font-medium text-blue-500 hover:underline">{{ $article->category->name }}</a>
