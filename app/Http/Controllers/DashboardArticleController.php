@@ -58,6 +58,10 @@ class DashboardArticleController extends Controller
      */
     public function show(Article $article)
     {
+        if ($article->author->id !== auth()->user()->id) {
+            abort(403);
+        }
+
         return view('dashboard.articles.show', [
             'article' => $article
         ]);
@@ -68,6 +72,10 @@ class DashboardArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        if ($article->author->id !== auth()->user()->id) {
+            abort(403);
+        }
+
         return view('dashboard.articles.edit', [
             'article' => $article,
             'categories' => Category::all()
