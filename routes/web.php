@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 // Route login
@@ -20,14 +22,11 @@ Route::get('/dashboard/', function () {
     return view('dashboard.overview');
 })->middleware('auth');
 Route::resource('/dashboard/articles', DashboardArticleController::class)->middleware('auth');
-
-Route::get('/dashboard/categories', function () {
-    return view('dashboard.categories');
-})->middleware('auth');
+Route::resource('/dashboard/categories', AdminCategoriesController::class)->except('show')->middleware('admin');
 
 Route::get('/dashboard/users', function () {
     return view('dashboard.users');
-})->middleware('auth');
+})->middleware('admin');
 
 Route::get('/authors', function () {
     return view('profile', ['title' => 'Author']);

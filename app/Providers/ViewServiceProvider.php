@@ -22,9 +22,9 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Menggunakan View Composer untuk mengirim data kategori ke semua view
-        View::composer('*', function ($view) {
-            $categories = Category::get();
-            $view->with('categories', $categories);
-        });
+        // View::composer('*', function ($view) {
+        //     $categories = Category::get();
+        //     $view->with('categories', $categories);
+        // });
     }
 }

@@ -66,7 +66,9 @@
 							</button>
 						</div>
 					@endif
+
 					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+						@if(is_null($articles))
 						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
 								<th scope="col" class="px-4 py-3">Created At</th>
@@ -80,8 +82,10 @@
 								</th>
 							</tr>
 						</thead>
+						@endif
+
 						<tbody>
-							@foreach( $articles as $article )
+							@forelse( $articles as $article )
 							<tr class="border-b dark:border-gray-700">
 								<td scope="row" class="px-4 py-3">{{ date('d-m-Y', strtotime($article->created_at)) }}</td>
 								<td class="px-4 py-3">{{ date('d-m-Y', strtotime($article->updated_at)) }}</td>
@@ -133,7 +137,14 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach
+							@empty
+							<div class="my-10 flex flex-col justify-center items-center">
+								<svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10.827 5.465-.435-2.324m.435 2.324a5.338 5.338 0 0 1 6.033 4.333l.331 1.769c.44 2.345 2.383 2.588 2.6 3.761.11.586.22 1.171-.31 1.271l-12.7 2.377c-.529.099-.639-.488-.749-1.074C5.813 16.73 7.538 15.8 7.1 13.455c-.219-1.169.218 1.162-.33-1.769a5.338 5.338 0 0 1 4.058-6.221Zm-7.046 4.41c.143-1.877.822-3.461 2.086-4.856m2.646 13.633a3.472 3.472 0 0 0 6.728-.777l.09-.5-6.818 1.277Z"/>
+								</svg>								  
+								<span class="text-base text-gray-500 col-span-6">You have no article published. Lets add one!</span>
+							</div>
+							@endforelse
 						</tbody>
 					</table>
 				</div>
@@ -199,7 +210,7 @@
 				</svg>
 				<p class="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to delete this article?</p>
 				<div class="flex justify-center items-center space-x-4">
-					<form action="/dashboard/articles/{{ $article->id }}" method="post">
+					<form action="/dashboard/articles/{{ $article->id ?? '#' }}" method="post">
 						@method('delete')
 						@csrf
 						<button class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Yes</button>

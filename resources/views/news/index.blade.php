@@ -1,4 +1,4 @@
-<x-layout>
+@component('components.layout', ['categories' => $categories])
     <article class="py-2 pb-10 min-w-full flex flex-nowrap gap-6">
         <figure class="basis-1/2">
             <img class="object-cover object-top max-h-80 min-w-full rounded-md"
@@ -51,4 +51,4 @@
     </section>
 
     {{ $articles->links() }}
-</x-layout>
+@endcomponent

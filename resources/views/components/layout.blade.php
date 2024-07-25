@@ -1,7 +1,7 @@
 <x-header></x-header>
     <div class="min-h-full">
         @if(!request()->is('login'))
-        <x-navbar></x-navbar>
+            @include('components.navbar', ['categories' => $categories])
         @endif
 
         <main>

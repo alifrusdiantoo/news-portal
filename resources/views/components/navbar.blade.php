@@ -10,7 +10,7 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <x-nav-link href="/">Home</x-nav-link>
                         @foreach ($categories as $category)
-                        <x-nav-link href="/categories/{{ $category->slug }}">{{ $category->name }}</x-nav-link>
+                            <x-nav-link href="/categories/{{ $category->slug }}">{{ $category->name }}</x-nav-link>
                         @endforeach
                     </div>
                 </div>

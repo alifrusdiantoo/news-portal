@@ -1,4 +1,4 @@
-<x-layout>
+@component('components.layout', ['categories' => $categories])
     <x-search-bar></x-search-bar>
     <h2 class="text-xl font-bold text-blue-500">{{ $title }}</h2>
     <section class="my-4 mb-4 grid grid-cols-4 gap-5">
@@ -6,7 +6,7 @@
         <article class="py-2 min-h-20 shadow-md">
             <a href="/news/{{ $article['slug'] }}">
                 <figure class="mb-4 basis-1/2">
-                    <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ $article['img'] }}"
+                    <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ asset('storage/' . $article->img) }}"
                         alt="">
                 </figure>
                 <main class="flex flex-col p-4">
@@ -33,4 +33,4 @@
 
     {{ $articles->links() }}
 
-</x-layout>
+@endcomponent
