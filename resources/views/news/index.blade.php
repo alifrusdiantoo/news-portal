@@ -2,7 +2,7 @@
     <article class="py-2 pb-10 min-w-full flex flex-nowrap gap-6">
         <figure class="basis-1/2">
             <img class="object-cover object-top max-h-80 min-w-full rounded-md"
-                src="{{ $highlight['img'] }}"
+                src="{{ asset('storage/' . $highlight->img) }}"
                 alt="">
         </figure>
         <aside class="basis-1/2">
@@ -26,11 +26,11 @@
         @foreach ($articles as $article)
         <article class="py-2 min-h-20 shadow-md">
             <a href="news/{{ $article['slug'] }}">
-                <figure class="mb-4 basis-1/2">
-                    <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ $article['img'] }}"
+                <figure class="basis-1/2">
+                    <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ asset('storage/' . $article->img) }}"
                         alt="">
                 </figure>
-                <main class="flex flex-col p-4">
+                <main class="flex flex-col p-3">
                     <h3 class="mb-1 text-lg tracking-tight font-bold text-gray-900 line-clamp-2">
                         {{ $article['title'] }}
                     </h3>

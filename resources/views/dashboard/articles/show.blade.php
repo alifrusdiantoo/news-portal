@@ -3,7 +3,7 @@
         <a href="/dashboard/articles" class="text-blue-700">&larr; Back to table</a>
         <header class="flex flex-col gap-5 my-3">
             <figure class="mb-4">
-                <img class="object-cover object-top max-h-60 min-w-full rounded-md" src="{{ $article['img'] }}" alt="">
+                <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ asset('storage/' . $article->img) }}" alt="">
             </figure>
             <aside class="">
                 <a href="/categories/{{ $article->category->slug }}" class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $article->category->name }}</a>

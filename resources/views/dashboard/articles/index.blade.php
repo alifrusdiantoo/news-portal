@@ -85,7 +85,7 @@
 							<tr class="border-b dark:border-gray-700">
 								<td scope="row" class="px-4 py-3">{{ date('d-m-Y', strtotime($article->created_at)) }}</td>
 								<td class="px-4 py-3">{{ date('d-m-Y', strtotime($article->updated_at)) }}</td>
-								<td class="px-4 py-3"><img src="{{ $article->img }}" alt="" srcset="" class="max-h-10 max-w-xs"></td>
+								<td class="px-4 py-3"><img src="{{ asset('storage/' . $article->img) }}" alt="" srcset="" class="object-cover max-w-12"></td>
 								<td class="px-4 py-3 max-w-[15rem] truncate">{{ $article->title }}</td>
 								<td class="px-4 py-3">{{ $article->category->name }}</td>
 								<td class="px-4 py-3 max-w-[15rem] truncate">{{ strip_tags($article->content) }}</td>
