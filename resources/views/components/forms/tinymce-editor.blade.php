@@ -1,1 +1,1 @@
-<textarea id="myeditorinstance" name="{{ $slot }}">{{ old('content', $oldValue) }}</textarea>
+<textarea id="myeditorinstance" name="{{ $slot }}">{{ old('content', $oldValue ?? '') }}</textarea>
