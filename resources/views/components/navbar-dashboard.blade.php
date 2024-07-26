@@ -58,7 +58,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                 class="w-8 h-8 rounded-full"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                src="{{ asset('storage/' . auth()->user()->img) }}"
                 alt="user photo"
                 />
             </button>
@@ -83,16 +83,9 @@
                 >
                 <li>
                     <a
-                    href="#"
+                    href="/profile/{{ auth()->user()->username }}"
                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                     >My profile</a
-                    >
-                </li>
-                <li>
-                    <a
-                    href="#"
-                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                    >Account settings</a
                     >
                 </li>
                 <li>

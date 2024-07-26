@@ -29,7 +29,7 @@
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="img">Upload image</label>
-                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="img" id="img" name="img" type="file" accept="image/*" required="" onchange="previewImage()">
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="img" id="img" name="img" type="file" accept="image/*" onchange="previewImage()" @if(!$article->img) required="" @endif>
                         @error('img')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">* {{ $message }}</p>
                         @enderror

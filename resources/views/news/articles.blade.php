@@ -6,7 +6,7 @@
         <article class="py-2 min-h-20 shadow-md">
             <a href="/news/{{ $article['slug'] }}">
                 <figure class="mb-4 basis-1/2">
-                    <img class="object-cover object-top max-h-96 min-w-full rounded-md" src="{{ asset('storage/' . $article->img) }}"
+                    <img class="object-cover object-top max-h-40 min-w-full rounded-md" src="{{ asset('storage/' . $article->img) }}"
                         alt="">
                 </figure>
                 <main class="flex flex-col p-4">
@@ -18,8 +18,8 @@
                         <a href="/authors/{{ $article->author->username }}" class="hover:underline">{{ Str::words($article->author->name, 2, '') }}</a> &centerdot; {{ $article['created_at']->diffForHumans() }}
                     </div>
 
-                    <p class="mb-4 font-light">
-                        {{ Str::limit(strip_tags($article['content']), 120) }}
+                    <p class="mb-4 font-light line-clamp-3">
+                        {{ Str::limit(strip_tags(html_entity_decode($article['content'])), 120) }}
                     </p>
 
                     <a href="/categories/{{ $article->category->slug }}" class="font-medium text-blue-500 hover:underline">{{ $article->category->name }}</a>
@@ -27,7 +27,7 @@
             </a>
         </article>
         @empty
-        <p class="font-semibold text-xl my-4">Article not found</p>
+        <p class="font-semibold text-xl my-4">Belum ada artikel</p>
         @endforelse
     </section>
 

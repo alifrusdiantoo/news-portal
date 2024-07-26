@@ -51,7 +51,7 @@ class NewsController extends Controller
     public function articleByCategory(Category $category)
     {
         $sum = count($category->article);
-        $title = "$sum " . Str::plural('article', $sum) . " in {$category->name}";
+        $title = "$sum " . "Artikel pada kategori {$category->name}";
 
         $search = implode(request(['search', '']));
 

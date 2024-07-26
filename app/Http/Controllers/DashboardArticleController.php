@@ -15,7 +15,7 @@ class DashboardArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('author_id', auth()->user()->id)->latest()->paginate(10)->withQueryString();
+        $articles = Article::where('author_id', auth()->user()->id)->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
 
         return view('dashboard.articles.index', [
             'articles' => $articles

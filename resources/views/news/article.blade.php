@@ -11,7 +11,7 @@
 
             <div class="mb-2 text-sm text-gray-500">
                 <!-- /authors/{{ $article->author->id }} -->
-                <a href="/authors" class="hover:underline">{{ $article->author->name }}</a> &centerdot; {{ $article['created_at']->format('d F Y') }}
+                <a href="/profile/{{ $article->author->username }}" class="hover:underline">{{ $article->author->name }}</a> &centerdot; {{ $article['created_at']->format('d F Y') }}
             </div>
         </header>
 

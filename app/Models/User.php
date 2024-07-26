@@ -5,12 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +52,23 @@ class User extends Authenticatable
 
     public function articlesPosted(): HasMany
     {
-        return $this->hasMany(Article::class, 'author_id');
+        return $this->hasMany(Article::class, 'author_id')->orderBy('created_at', 'desc');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($author) {
+            if ($author->isForceDeleting()) {
+                $author->articlesPosted()->forceDelete();
+            } else {
+                $author->articlesPosted()->delete();
+            }
+        });
+
+        static::restoring(function ($author) {
+            $author->articlesPosted()->withTrashed()->restore();
+        });
     }
 }
